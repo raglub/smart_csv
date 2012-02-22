@@ -14,11 +14,11 @@ This gem need header.
    @data.create({"id"=> '13', "lastname" => '1992'})
 
 * Select records
-  @data.where({'firstname' => 'One'}).where_not({'id' => '4'})
+   @data.where({'firstname' => 'One'}).where_not({'id' => '4'})
 
 * Update record
-  @data.where({'firstname' => 'One'}).first.update({"lastname" => "Seven", "wartosc" => 2012}) }
+   @data.where({'firstname' => 'One'}).first.update({"lastname" => "Seven", "wartosc" => 2012}) }
 
 * Delete all records
-  @data.delete_all
+   @data.delete_all
 
