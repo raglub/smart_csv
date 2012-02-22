@@ -2,30 +2,30 @@
 require 'csv'
 class CSV::Table
 
-  def where_not(conditions)
+  def where_not(*conditions)
     result = CSV::Table.new([])
     self.each do |record|
       counter = 0
-      conditions.each {|key, value| counter += 1 unless record[key] == value.to_s}
+      conditions.first.each {|key, value| counter += 1 unless record[key] == value.to_s}
       result << record if counter == conditions.size
     end
     result
   end
 
-  def where(conditions)
+  def where(*conditions)
     result = CSV::Table.new([])
     self.each do |record|
       counter = 0
-      conditions.each {|key, value| counter += 1 if record[key] == value.to_s}
+      conditions.first.each {|key, value| counter += 1 if record[key] == value.to_s}
       result << record if counter == conditions.size
     end
     result
   end
 
-  def create(conditions)
+  def create(*conditions)
     headers = self.headers
     row = headers.inject({}){|result, value| result[value] = nil; result}
-    conditions.each do |key, value|
+    conditions.first.each do |key, value|
       raise "In headers: '#{headers}' don't have key: '#{key}'" unless headers.include?(key)
       row[key] = value
     end
@@ -36,4 +36,12 @@ class CSV::Table
   rescue Exception => e
     puts "#{self.class}  #{e.message}"
   end
+
+  # Delete all record of table
+  def delete_all
+    while not self.empty?    
+      self.delete(0)
+    end
+  end
+
 end
