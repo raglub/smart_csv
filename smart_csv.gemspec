@@ -5,7 +5,7 @@ require "smart_csv/version"
 Gem::Specification.new do |s|
   s.name        = "smart_csv"
   s.version     = SmartCSV::VERSION
-  s.date        = Time.now.strftime("%Y-%m-%d")
+  s.date        = "2012-02-07"
   s.authors     = ["Michał Szyma"]
   s.email       = ["szyma.michal@gmail.com"]
   s.homepage    = ""
