@@ -7,14 +7,14 @@ Gem::Specification.new do |s|
   s.version     = SmartCSV::VERSION
   s.date        = "2012-02-07"
   s.authors     = ["Michał Szyma"]
-  s.email       = ["szyma.michal@gmail.com"]
+  s.email       = ["raglub.ruby@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{Extend CSV class}
   s.description = %q{Extend CSV class}
 
   s.rubyforge_project = "active_csv"
 
-  s.files         = `git ls-files`.split("\n") + Dir.glob("lib/**/*")
+  s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
