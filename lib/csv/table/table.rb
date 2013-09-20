@@ -2,18 +2,22 @@
 require 'csv'
 class CSV::Table
 
+  attr_accessor :ancestor
+
   def where_not(*conditions)
     result = CSV::Table.new([])
     self.each do |record|
       counter = 0
       conditions.first.each {|key, value| counter += 1 unless record[key] == value.to_s}
-      result << record if counter == conditions.size
+      result.table << record if counter == conditions.size
     end
     result
   end
 
   def where(*conditions)
     result = CSV::Table.new([])
+    result.ancestor = self.ancestor || self
+
     self.each do |record|
       counter = 0
       conditions.first.each {|key, value| counter += 1 if record[key] == value.to_s}
@@ -37,11 +41,17 @@ class CSV::Table
     puts "#{self.class}  #{e.message}"
   end
 
-  # Delete all record of table
+  # Delete all record of ancestor table
+  # it works with method #where
   def delete_all
-    while not self.empty?    
-      self.delete(0)
+    if self.ancestor
+      self.table.each do |row|
+        self.ancestor.table.delete(row)
+      end
+    else
+      while not self.empty?
+        self.delete(0)
+      end
     end
   end
-
 end
