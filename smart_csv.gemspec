@@ -1,24 +1,22 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "smart_csv/version"
+$:.push File.expand_path('../lib', __FILE__)
+require 'smart_csv/version'
 
-Gem::Specification.new do |s|
-  s.name        = "smart_csv"
-  s.version     = SmartCSV::VERSION
-  s.date        = "2012-02-07"
-  s.authors     = ["Michał Szyma"]
-  s.email       = ["raglub.ruby@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{Extend CSV class}
-  s.description = %q{Extend CSV class}
+Gem::Specification.new do |gem|
+  gem.name        = 'smart_csv'
+  gem.version     = SmartCSV::VERSION
+  gem.date        = '2013-09-20'
+  gem.authors     = ['Michał Szyma']
+  gem.email       = ['raglub.ruby@gmail.com']
+  gem.homepage    = "https://github.com/raglub/smart_csv"
+  gem.summary     = %q{Extend CSV class.}
+  gem.description = %q{Extend CSV class. CSV can delete or select some records.}
 
-  s.rubyforge_project = "active_csv"
+  gem.files = `git ls-files`.split($\)
+  gem.executables = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.require_paths = ['lib']
 
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
-
-  s.add_dependency "csv"
+  gem.add_development_dependency 'rspec'
 end
