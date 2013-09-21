@@ -5,7 +5,7 @@ require 'smart_csv/version'
 Gem::Specification.new do |gem|
   gem.name        = 'smart_csv'
   gem.version     = SmartCSV::VERSION
-  gem.date        = '2013-09-20'
+  gem.date        = '2013-09-22'
   gem.authors     = ['Michał Szyma']
   gem.email       = ['raglub.ruby@gmail.com']
   gem.homepage    = "https://github.com/raglub/smart_csv"
