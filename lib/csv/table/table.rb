@@ -26,6 +26,18 @@ class CSV::Table
     result
   end
 
+  # select all records which have attribute greater than starter
+  def gt(attribute, starter)
+    result = CSV::Table.new([])
+    result.ancestor = self.ancestor || self
+
+    self.each do |record|
+      result << record if record[attribute].to_i > starter
+    end
+
+    result
+  end
+
   def create(*conditions)
     headers = self.headers
     row = headers.inject({}){|result, value| result[value] = nil; result}
