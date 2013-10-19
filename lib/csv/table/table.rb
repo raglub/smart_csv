@@ -26,16 +26,36 @@ class CSV::Table
     result
   end
 
-  # select all records which have attribute greater than starter
-  def gt(attribute, starter)
-    result = CSV::Table.new([])
-    result.ancestor = self.ancestor || self
+  [
+    [:lt, :<],
+    [:le, :<=],
+    [:gt, :>],
+    [:ge, :>=],
+  ].each do |name, operator|
+    define_method name do |attribute, value|
+      result = prepare_new_table
 
-    self.each do |record|
-      result << record if record[attribute].to_i > starter
+      self.each do |record|
+        result << record if record[attribute].to_f.send(operator, value)
+      end
+
+      result
     end
+  end
 
-    result
+  [
+    [:eq, :==],
+    [:ne, '!=']
+  ].each do |name, operator|
+    define_method name do |attribute, value|
+      result = prepare_new_table
+
+      self.each do |record|
+        result << record if record[attribute].send(operator, value)
+      end
+
+      result
+    end
   end
 
   def create(*conditions)
@@ -66,4 +86,13 @@ class CSV::Table
       end
     end
   end
+
+  private
+
+    def prepare_new_table
+      result = CSV::Table.new([])
+      result.ancestor = self.ancestor || self
+      result
+    end
+
 end

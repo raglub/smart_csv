@@ -1,6 +1,6 @@
 require 'smart_csv'
 
-describe "Check class CSV::Row" do
+describe CSV::Row do
 
   before(:each) do
     data = "id,firstname,lastname\n1,One,One\n2,Two,Two\n4,Four,Four\n5,Five,Five\n6,One,One"
