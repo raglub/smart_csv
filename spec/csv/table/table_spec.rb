@@ -1,6 +1,6 @@
 require 'smart_csv'
 
-describe "Check class CSV::Table" do
+describe CSV::Table do
 
   let(:csv_data) {"id,firstname,lastname\n1,One,One\n2,Two,Two\n4,Four,Four\n5,Five,Five\n6,One,One"}
 
@@ -20,6 +20,26 @@ describe "Check class CSV::Table" do
 
   it "should select records with id greater than 2" do
     parse_data.gt('id', 2).size.should eq(3)
+  end
+
+  it "should select records with id greater than or equal to 2" do
+    parse_data.ge('id', 2).size.should eq(4)
+  end
+
+  it "should select records with id less than 2" do
+    parse_data.lt('id', 2).size.should eq(1)
+  end
+
+  it "should select records with id less than or equal to 2" do
+    parse_data.le('id', 2).size.should eq(2)
+  end
+
+  it "should select records with firstname equal to 'Four'" do
+    parse_data.eq('firstname', 'Four').size.should eq(1)
+  end
+
+  it "should select records with firstname not equal to 'Four'" do
+    parse_data.ne('firstname', 'Four').size.should eq(4)
   end
 
   it "should correct delete records" do
