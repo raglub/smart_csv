@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.name           = 'smart_csv'
   gem.version        = SmartCSV::VERSION
   gem.platform       = Gem::Platform::RUBY
-  gem.date           = '2013-10-19'
+  gem.date           = '2013-10-29'
   gem.authors        = ['Michał Szyma']
   gem.email          = ['raglub.ruby@gmail.com']
   gem.homepage       = "https://github.com/raglub/smart_csv"
@@ -19,5 +19,9 @@ Gem::Specification.new do |gem|
 
   gem.require_paths  = ['lib']
 
+  gem.add_dependency 'bundler', '>= 1.0.0'
+  gem.add_dependency 'rake'
+
   gem.add_development_dependency 'rspec', ">= 2.0.0"
+
 end

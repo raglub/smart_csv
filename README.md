@@ -1,6 +1,8 @@
 # SmartCSV
 
 [![Gem Version](https://badge.fury.io/rb/smart_csv.png)](http://badge.fury.io/rb/smart_csv)
+[![Build Status](https://travis-ci.org/raglub/smart_csv.png)](https://travis-ci.org/raglub/smart_csv)
+[![Code Climate](https://codeclimate.com/github/raglub/smart_csv.png)](https://codeclimate.com/github/raglub/smart_csv)
 
 Extend CSV class. CSV can delete or select some records.
 
@@ -80,3 +82,8 @@ data = "id,firstname,lastname\n1,One,One\n2,Two,Two\n4,One,Four\n5,One,Five"
 ```ruby
 @data.ne('firstname', 'Tom')
 ```
+# License
+
+SmartCSV uses the MIT license. Please check the [LICENSE][] file for more details.
+
+[license]: https://github.com/raglub/smart_csv/blob/master/LICENSE
