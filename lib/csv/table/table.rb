@@ -5,7 +5,8 @@ class CSV::Table
   attr_accessor :ancestor
 
   def where_not(*conditions)
-    result = CSV::Table.new([])
+    result = prepare_new_table
+
     self.each do |record|
       counter = 0
       conditions.first.each {|key, value| counter += 1 unless record[key] == value.to_s}
@@ -14,9 +15,15 @@ class CSV::Table
     result
   end
 
+  # Select records which don't match with block
+  def not(&block)
+    result = prepare_new_table
+    result.table.replace(self.table - self.instance_eval(&block).table)
+    result
+  end
+
   def where(*conditions)
-    result = CSV::Table.new([])
-    result.ancestor = self.ancestor || self
+    result = prepare_new_table
 
     self.each do |record|
       counter = 0

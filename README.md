@@ -3,85 +3,96 @@
 [![Gem Version](https://badge.fury.io/rb/smart_csv.png)](http://badge.fury.io/rb/smart_csv)
 [![Build Status](https://travis-ci.org/raglub/smart_csv.png)](https://travis-ci.org/raglub/smart_csv)
 [![Code Climate](https://codeclimate.com/github/raglub/smart_csv.png)](https://codeclimate.com/github/raglub/smart_csv)
+[![Dependency Status](https://gemnasium.com/raglub/smart_csv.png)](https://gemnasium.com/raglub/smart_csv)
+[![Coverage Status](https://coveralls.io/repos/raglub/smart_csv/badge.png)](https://coveralls.io/r/raglub/smart_csv)
 
 Extend CSV class. CSV can delete or select some records.
 
 Compatible with:
 Ruby 1.9.2, 1.9.3, and 2.0.0
 
-## FOR EXAMPLE
+# Getting started
+
+For Example we can use following data
 
 ```ruby
 data = "id,firstname,lastname\n1,One,One\n2,Two,Two\n4,One,Four\n5,One,Five"
-@data = CSV.parse(data, {:col_sep => ',', :headers => true}
+csv = CSV.parse(data, {:col_sep => ',', :headers => true}
 ```
-## METHODS
 
-* Create a new record
+And now we can:
+
+* create a new record
 
 ```ruby
-@data.create("id"=> '13', "lastname" => '1992')
+csv.create("id"=> '13', "lastname" => '1992')
 ```
 
-* Select records
+* select records
 
 ```ruby
-@data.where('firstname' => 'One').where_not('id' => '4')
+csv.where('firstname' => 'One').where_not('id' => '4')
 ```
-
-* Update record
+* select opposite records
 
 ```ruby
-@data.where('firstname' => 'One').first.update({"lastname" => "Seven", "wartosc" => 2012}) }
+csv.not{where('firstname' => 'One')}
 ```
 
-* Delete all records
+* update record
 
 ```ruby
-@data.delete_all
+csv.where('firstname' => 'One').first.update({"lastname" => "Seven", "wartosc" => 2012}) }
 ```
 
-* Delete all records from scope of condition
+* delete all records
 
 ```ruby
-@data.where('firstname' => 'One').delete_all
+csv.delete_all
 ```
 
-* Select all records which have 'id' attribute greater than 2
+* delete all records from scope of condition
 
 ```ruby
-@data.gt('id', '2')
+csv.where('firstname' => 'One').delete_all
 ```
 
-* Select all records which have 'id' attribute greater or equal 2
+* select all records which have 'id' attribute greater than 2
 
 ```ruby
-@data.ge('id', '2')
+csv.gt('id', '2')
 ```
 
-* Select all records which have 'id' attribute less than 2
+* select all records which have 'id' attribute greater or equal 2
 
 ```ruby
-@data.lt('id', '2')
+csv.ge('id', '2')
 ```
 
-* Select all records which have 'id' attribute less or equal 2
+* select all records which have 'id' attribute less than 2
 
 ```ruby
-@data.le('id', '2')
+csv.lt('id', '2')
 ```
 
-* Select all records which have 'firstname' attribute equal 'Tom'
+* select all records which have 'id' attribute less or equal 2
 
 ```ruby
-@data.eq('firstname', 'Tom')
+csv.le('id', '2')
 ```
 
-* Select all records which have 'firstname' attribute not equal 'Tom'
+* select all records which have 'firstname' attribute equal 'Tom'
 
 ```ruby
-@data.ne('firstname', 'Tom')
+csv.eq('firstname', 'Tom')
 ```
+
+* select all records which have 'firstname' attribute not equal 'Tom'
+
+```ruby
+csv.ne('firstname', 'Tom')
+```
+
 # License
 
 SmartCSV uses the MIT license. Please check the [LICENSE][] file for more details.

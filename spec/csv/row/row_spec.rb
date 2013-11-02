@@ -1,4 +1,4 @@
-require 'smart_csv'
+require 'spec_helper'
 
 describe CSV::Row do
 
