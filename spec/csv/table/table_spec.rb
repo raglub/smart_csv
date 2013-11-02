@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe CSV::Table do
 
   let(:csv_data) {"id,firstname,lastname
@@ -25,6 +24,26 @@ describe CSV::Table do
 
   it "#not" do
     csv.not{where('firstname' => "One")}.size.should eql(3)
+  end
+
+  describe "#and" do
+    it "with empty result" do
+      csv.where('firstname' => "Two").and{where('firstname' => "Five")}.size.should eql(0)
+    end
+
+    it "with one result" do
+      csv.lt('id', 5).and{where('firstname' => "One")}.size.should eql(1)
+    end
+  end
+
+  describe "#or" do
+    it "with one result" do
+      csv.where('firstname' => "Two").or{where('firstname' => "Two")}.size.should eql(1)
+    end
+
+    it "with two result" do
+      csv.where('firstname' => "Two").or{where('firstname' => "Five")}.size.should eql(2)
+    end
   end
 
   it "should select records with id greater than 2" do
