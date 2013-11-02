@@ -39,6 +39,18 @@ csv.where('firstname' => 'One').where_not('id' => '4')
 csv.not{where('firstname' => 'One')}
 ```
 
+* select records which satisfy two conditions
+
+```ruby
+csv.where('firstname' => 'One').and{lt('id', 4)}
+```
+
+* select records which satisfy one of two conditions
+
+```ruby
+csv.where('firstname' => 'One').or{where('firstname' => 'Two')}
+```
+
 * update record
 
 ```ruby

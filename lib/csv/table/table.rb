@@ -15,13 +15,6 @@ class CSV::Table
     result
   end
 
-  # Select records which don't match with block
-  def not(&block)
-    result = prepare_new_table
-    result.table.replace(self.table - self.instance_eval(&block).table)
-    result
-  end
-
   def where(*conditions)
     result = prepare_new_table
 
@@ -30,6 +23,27 @@ class CSV::Table
       conditions.first.each {|key, value| counter += 1 if record[key] == value.to_s}
       result << record if counter == conditions.size
     end
+    result
+  end
+
+  # Select records which don't match with block
+  def not(&block)
+    result = prepare_new_table
+    result.table.replace(self.table - self.instance_eval(&block).table)
+    result
+  end
+
+  # Select records which satisfy two conditions
+  def and(&block)
+    result = prepare_new_table
+    result.table.replace(self.table & self.instance_eval(&block).table)
+    result
+  end
+
+  # Select records which satisfy one of two conditions
+  def or(&block)
+    result = prepare_new_table
+    result.table.replace(self.table | ancestor.instance_eval(&block).table)
     result
   end
 
