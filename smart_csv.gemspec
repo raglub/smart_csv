@@ -6,12 +6,13 @@ Gem::Specification.new do |gem|
   gem.name           = 'smart_csv'
   gem.version        = SmartCSV::VERSION
   gem.platform       = Gem::Platform::RUBY
-  gem.date           = '2013-10-29'
+  gem.date           = '2013-11-02'
   gem.authors        = ['Michał Szyma']
   gem.email          = ['raglub.ruby@gmail.com']
   gem.homepage       = "https://github.com/raglub/smart_csv"
   gem.summary        = %q{Extend CSV class.}
   gem.description    = %q{Extend CSV class. CSV can delete or select some records.}
+  gem.license        = "MIT"
 
   gem.files          = `git ls-files`.split($\)
   gem.executables    = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
